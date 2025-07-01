@@ -14,8 +14,8 @@ struct ContentView: View {
         NavigationStack {
             VStack {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 100 , height: 100)
+                    Rectangle()
+                        .frame(width: 300 , height: 200)
                         .padding()
                     
                     Text("Logo")
@@ -23,20 +23,11 @@ struct ContentView: View {
                 }
                 
                 Section {
-                    NavigationLink("Start Game") {
-                        GameView()
+                    HomeButtonSytle(location: {GameView(questions: sampleQuestions)}, buttonText: "Start Game", colored: true)
+                    HomeButtonSytle(location: {LibraryView()}, buttonText: "SongLibrary", colored: false)
+                    HomeButtonSytle(location: {SettingsView()}, buttonText: "Settings",  colored: false)
                     }
-                    .buttonStyle(.borderedProminent)
-                    
-                    NavigationLink("Song Library") {
-                        LibraryView()
-                    }
-                    NavigationLink("Settings") {
-                        SettingsView()
-                    }
-                }
-                .buttonStyle(.bordered)
-                
+                .padding(5)
             }
             .padding(5)
             
@@ -67,6 +58,7 @@ struct ContentView: View {
     // - a way to have different random answers pop up
     
     //
+
 
 #Preview {
     ContentView()
