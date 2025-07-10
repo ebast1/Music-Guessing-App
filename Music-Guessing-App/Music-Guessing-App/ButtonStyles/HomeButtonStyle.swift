@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-struct HomeButtonSytle<Destination: View>: View{
-    let location: () -> Destination
+struct HomeButtonSytle: View{
     let buttonText: String
     let colored: Bool
     
     var body: some View {
-        NavigationLink(destination: location()) {
+        NavigationLink() {
             Text(buttonText)
                 .frame(width: 300, height: 30)
                 .padding()

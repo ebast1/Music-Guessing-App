@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-enum GameNavigation: Hashable {
-    case summary
-}
-
 struct GameView: View {
     @State private var selectedAnswer: String? = nil
     @State private var currentRoundIndex: Int = 0
@@ -58,7 +54,6 @@ struct GameView: View {
     var body: some View {
         let isLastQuestion = currentRoundIndex == questions.count - 1
         
-        NavigationStack {
             VStack {
                 Text("Question \(currentRoundIndex + 1) of \(questions.count)")
                     .font(.headline)
@@ -104,17 +99,6 @@ struct GameView: View {
                     }
                 }
                 .disabled(!hasAnswered)
-                
-                NavigationLink(value: navigationSelection) {
-                    EmptyView()
-                }
-            }
-            .navigationDestination(for: GameNavigation.self) { nav in
-                switch nav {
-                case .summary:
-                    SummaryView()
-                }
-            }
         }
     }
 }
