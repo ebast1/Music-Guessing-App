@@ -22,11 +22,12 @@ struct ContentView: View {
                         .foregroundStyle(.white)
                 }
                 
-                Section {
-                    HomeButtonSytle(location: {GameView(questions: sampleQuestions)}, buttonText: "Start Game", colored: true)
-                    HomeButtonSytle(location: {LibraryView()}, buttonText: "SongLibrary", colored: false)
-                    HomeButtonSytle(location: {SettingsView()}, buttonText: "Settings",  colored: false)
-                }
+//                Section {
+//                    HomeButtonSytle(location: {GameView(questions: sampleQuestions)}, buttonText: "Start Game", colored: true)
+//                    HomeButtonSytle(location: {LibraryView()}, buttonText: "SongLibrary", colored: false)
+//                    HomeButtonSytle(location: {SettingsView()}, buttonText: "Settings",  colored: false)
+//                }
+                
                 Section {
                     Button("Start Game") {
                         path.append(GameNavigation.game)
