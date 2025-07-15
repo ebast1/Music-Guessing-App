@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GameView: View {
+    @Binding var path: [GameNavigation]
+    
     @State private var selectedAnswer: String? = nil
     @State private var currentRoundIndex: Int = 0
     @State private var hasAnswered = false
@@ -95,14 +97,16 @@ struct GameView: View {
                         hasAnswered = false
                         wasCorrect = false
                     } else {
-                        navigationSelection = .summary
+                        path.append(GameNavigation.summary)
                     }
                 }
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .buttonStyle(NextButtonStyle())
                 .disabled(!hasAnswered)
         }
     }
 }
 
 #Preview {
-    GameView(questions: sampleQuestions)
+    GameView(path: .constant([.summary]), questions: sampleQuestions)
 }

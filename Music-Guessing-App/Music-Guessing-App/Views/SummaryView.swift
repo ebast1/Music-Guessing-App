@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct SummaryView: View {
+    @Binding var path: [GameNavigation]
+    
     var body: some View {
+        Spacer()
+        
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Spacer()
+        
+        Button("Back to Home Screen") {
+            path = []
+        }
+        .buttonStyle(HomeButtonStyle())
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        
     }
 }
 
 #Preview {
-    SummaryView()
+    SummaryView(path: .constant([]))
 }

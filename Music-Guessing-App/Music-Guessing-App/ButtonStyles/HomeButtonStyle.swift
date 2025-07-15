@@ -7,22 +7,13 @@
 
 import SwiftUI
 
-struct HomeButtonSytle: View{
-    let buttonText: String
-    let colored: Bool
-    
-    var body: some View {
-        NavigationLink() {
-            Text(buttonText)
-                .frame(width: 300, height: 30)
-                .padding()
-                .background(colored ? Color.blue : Color.gray.opacity(0.2))
-                .foregroundColor(colored ? Color.white :Color.blue)
-                .cornerRadius(8)
-        }
+struct HomeButtonStyle: ButtonStyle{
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 300, height: 30)
+            .padding()
+            .clipShape(Capsule())
+            .background(configuration.isPressed ? Color.blue : Color.gray.opacity(0.2))
+            .foregroundColor(configuration.isPressed ? Color.white : Color.blue)
     }
-}
-
-#Preview {
-    HomeButtonSytle(location: {GameView(questions: sampleQuestions)}, buttonText: "Example Text", colored: false)
 }

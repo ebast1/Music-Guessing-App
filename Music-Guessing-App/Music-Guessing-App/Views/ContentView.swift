@@ -13,51 +13,57 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $path){
             VStack {
+                
                 ZStack {
                     Rectangle()
-                        .frame(width: 300 , height: 200)
+                        .frame(width: .infinity , height: 300)
                         .padding()
                     
                     Text("Logo")
                         .foregroundStyle(.white)
                 }
                 
-//                Section {
-//                    HomeButtonSytle(location: {GameView(questions: sampleQuestions)}, buttonText: "Start Game", colored: true)
-//                    HomeButtonSytle(location: {LibraryView()}, buttonText: "SongLibrary", colored: false)
-//                    HomeButtonSytle(location: {SettingsView()}, buttonText: "Settings",  colored: false)
-//                }
-                
                 Section {
                     Button("Start Game") {
-                        path.append(GameNavigation.game)
+                        path.append(GameNavigation.startGame)
                     }
                     Button("Song Library") {
                         path.append(GameNavigation.songLibrary)
                     }
+                    .buttonStyle(HomeButtonStyle())
                     Button("Settings") {
                         path.append(GameNavigation.settings)
                     }
+                    
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(HomeButtonStyle())
+                .clipShape(RoundedRectangle(cornerRadius: 8))
                 .padding(5)
+                
             }
-            .padding(5)
             .navigationDestination(for: GameNavigation.self) { destination in switch destination {
+            case GameNavigation.startGame:
+                StartGameView(path: $path)
+                    .navigationBarBackButtonHidden()
             case GameNavigation.game:
-                GameView(questions: sampleQuestions)
+                GameView(path: $path, questions: sampleQuestions)
+                    .navigationBarBackButtonHidden()
             case GameNavigation.songLibrary:
                 LibraryView()
             case GameNavigation.settings:
                 SettingsView()
             case GameNavigation.summary:
-                SummaryView()
-            }
-            }
+                SummaryView(path: $path)
+                    .navigationBarBackButtonHidden()
+            } // Switch statement Ends
+            } // .navigationDestination Ends
             
-        }
-    }
-}
+        } // NavigationStack Ends
+        
+    } // End of body
+    
+} // End of ContentView()
+
 // Where to start / What I need to make
 
 // DESIGN
@@ -79,9 +85,6 @@ struct ContentView: View {
 // - a way to have the answer stored
 // - a way to have images stored
 // - a way to have different random answers pop up
-
-//
-
 
 #Preview {
     ContentView()

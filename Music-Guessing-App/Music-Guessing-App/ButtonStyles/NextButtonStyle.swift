@@ -7,21 +7,15 @@
 
 import SwiftUI
 
-struct NextButtonStyle: View {
+struct NextButtonStyle: ButtonStyle {
     var action: () -> Void = {}
     
-    var body: some View {
-        Button(action: action) {
-            Text("Next Question")
-                .frame(width: 300, height: 30)
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .cornerRadius(8)
-        }
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 300, height: 30)
+            .padding()
+            .background(configuration.isPressed ? Color.blue : Color.gray.opacity(0.2))
+            .foregroundColor(configuration.isPressed ? Color.white : Color.blue)
     }
-}
-
-#Preview {
-    NextButtonStyle(action: {})
+    
 }

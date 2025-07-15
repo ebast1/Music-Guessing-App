@@ -9,6 +9,7 @@ import SwiftUI
 import Swift
 
 enum GameNavigation: Hashable {
+    case startGame
     case game
     case summary
     case settings
