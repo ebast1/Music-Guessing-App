@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MusicGuessingAppAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc15b10c01f1aec5c3d10efe2a7d6cb90973cc1c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d97d8ae7bbf08ed6145e08bd604bcf87856c7df5")]
 [assembly: System.Reflection.AssemblyProductAttribute("MusicGuessingAppAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MusicGuessingAppAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

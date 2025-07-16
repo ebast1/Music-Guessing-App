@@ -20,7 +20,10 @@ struct GameView: View {
     @State private var questions: [AudioQuestion] = []
     
     var currentQuestion: AudioQuestion {
-        questions[currentRoundIndex]
+        guard !questions.isEmpty, currentRoundIndex < questions.count else {
+            return AudioQuestion.placeholder // Define a safe placeholder if needed
+        }
+        return questions[currentRoundIndex]
     }
     
     var choices: [String] {
@@ -55,7 +58,7 @@ struct GameView: View {
     
     var body: some View {
         let isLastQuestion = currentRoundIndex == questions.count - 1
-                
+        
         VStack {
             if questions.isEmpty {
                 Text("Loading Questions...")

@@ -10,12 +10,26 @@ import SwiftUI
 import Swift
 
 struct AudioQuestion: Codable, Identifiable {
-    let id: Int
-    let showName: String
-    let choices: [String]
-    let audioURL: String
-    let genre: String
-    let difficulty: String
+    var id: Int
+    var showName: String
+    var songType: String
+    var songName: String
+    var isMultipleChoice: Bool
+    var choices: [String]
+    var genre: String
+    var difficulty: String
+    
+    static let placeholder = AudioQuestion(
+        id: 0,
+        showName: "Unknown Show",
+        songType: "opening",
+        songName: "unknown_song.mp3",
+        isMultipleChoice: true,
+        choices: ["Option A", "Option B", "Option C", "Option D"],
+        genre: "Any",
+        difficulty: "Easy"
+    )
+    
 }
 
 // What does an AudioQuestion have
