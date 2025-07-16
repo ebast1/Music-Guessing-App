@@ -53,35 +53,9 @@ struct GameView: View {
         }
     }
     
-    func generateQuestions(count: Int, difficulty: Difficulty, genre: Genre) -> [AudioQuestion] {
-        let sampleShows: [String] = [
-            "Breaking Bad", "The Office", "Stranger Things", "Friends",
-            "Game of Thrones", "The Mandalorian", "Bridgerton", "Sherlock"
-        ]
-
-        var questions: [AudioQuestion] = []
-
-        for _ in 0..<count {
-            let correctAnswer = sampleShows.randomElement()!
-
-            let incorrectChoices = sampleShows.filter { $0 != correctAnswer }.shuffled()
-
-            var choices = Array(incorrectChoices.prefix(3))
-
-            choices.append(correctAnswer)
-
-            choices.shuffle()
-
-            let question = AudioQuestion(showName: "Placeholder", songName: "placeholder", songType: "opening", isMulitpleChoice: true, choices: Array(choices))
-            questions.append(question)
-        }
-
-        return questions
-    }
-    
     var body: some View {
         let isLastQuestion = currentRoundIndex == questions.count - 1
-        
+                
         VStack {
             if questions.isEmpty {
                 Text("Loading Questions...")
@@ -137,13 +111,8 @@ struct GameView: View {
             }
         } // End of VStack
         .onAppear {
-            print("Generating \(settings.selectedRound) questions")
-            if questions.isEmpty {
-                questions = generateQuestions(
-                    count: settings.selectedRound,
-                    difficulty: settings.difficulty,
-                    genre: settings.genre
-                )
+            QuestionService().fetchQuestions { fetched in
+                self.questions = fetched
             }
         } // End of .onAppear
         

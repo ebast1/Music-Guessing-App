@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "DDX4y3dfSRoygqslHvxN/7OUG7JNg+v/CxV6TOyyGTs=",
+  "Source": "MusicGuessingAppAPI",
+  "BasePath": "_content/MusicGuessingAppAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
