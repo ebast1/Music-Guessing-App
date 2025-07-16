@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var path: [GameNavigation] = []
+    @StateObject private var gameSettings = GameSettings()
     
     var body: some View {
         NavigationStack(path: $path){
@@ -16,7 +17,7 @@ struct ContentView: View {
                 
                 ZStack {
                     Rectangle()
-                        .frame(width: .infinity , height: 300)
+                        .frame(width: 400 , height: 300)
                         .padding()
                     
                     Text("Logo")
@@ -43,10 +44,10 @@ struct ContentView: View {
             }
             .navigationDestination(for: GameNavigation.self) { destination in switch destination {
             case GameNavigation.startGame:
-                StartGameView(path: $path)
+                StartGameView(path: $path, settings: gameSettings)
                     .navigationBarBackButtonHidden()
             case GameNavigation.game:
-                GameView(path: $path, questions: sampleQuestions)
+                GameView(path: $path, settings: gameSettings)
                     .navigationBarBackButtonHidden()
             case GameNavigation.songLibrary:
                 LibraryView()

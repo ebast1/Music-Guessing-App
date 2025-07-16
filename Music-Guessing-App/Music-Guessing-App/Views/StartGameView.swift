@@ -35,11 +35,7 @@ enum Genre: String, CaseIterable {
 
 struct StartGameView: View {
     @Binding var path: [GameNavigation]
-    
-    @State private var selectedRound: Int = 1
-    @State private var selectedGameMode: GameMode = .multipleChoice
-    @State private var difficulty: Difficulty = .easy
-    @State private var genre: Genre = .action
+    @ObservedObject var settings: GameSettings
     
     var body: some View {
         VStack {
@@ -64,8 +60,8 @@ struct StartGameView: View {
                     Spacer()
                 }
                 
-                Stepper(value: $selectedRound, in: 1...10) {
-                    Text($selectedRound.wrappedValue.description)
+                Stepper(value: $settings.selectedRound, in: 1...10) {
+                    Text("\(settings.selectedRound)")
                 }
             }
             .padding(.horizontal)
@@ -80,7 +76,7 @@ struct StartGameView: View {
                 }
                 .padding(.top, 10)
                 
-                Picker("", selection: $difficulty) {
+                Picker("", selection: $settings.difficulty) {
                     ForEach(Difficulty.allCases, id: \.self) { option in
                         Text(option.rawValue)
                     }
@@ -99,7 +95,7 @@ struct StartGameView: View {
                 }
                 .padding(.top, 10)
                 
-                Picker("", selection: $selectedGameMode) {
+                Picker("", selection: $settings.selectedGameMode) {
                     ForEach(GameMode.allCases, id: \.self) { option in
                         Text(option.rawValue)
                     }
@@ -118,7 +114,7 @@ struct StartGameView: View {
                 }
                 .padding(.top, 10)
                 
-                Picker("Genre", selection: $genre){
+                Picker("Genre", selection: $settings.genre){
                     ForEach(Genre.allCases,id: \.self) { option in
                         Text(option.rawValue)
                     }
@@ -143,5 +139,5 @@ struct StartGameView: View {
 }
 
 #Preview {
-    StartGameView(path: .constant([.game]))
+    StartGameView(path: .constant([.game]), settings: GameSettings())
 }

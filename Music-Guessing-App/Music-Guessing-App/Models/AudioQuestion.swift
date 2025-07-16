@@ -71,3 +71,14 @@ let sampleQuestions: [AudioQuestion] = [
     )
 ]
 
+// What does an AudioQuestion have
+
+// a Show name (ie. Black Clover, Naruto)
+// a Song name (ie. Black Rover, Blue Bird)
+// a Song type (ie. opening, ending, insert song)
+
+// an audio file
+// an image
+
+// a genre (ie. Action, Comedy, Romance)
+// a difficulty (ie. Easy, Medium, Hard)
